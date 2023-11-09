@@ -21,13 +21,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-        <Route path="/" element={<Dashboard />}>
-          <Route path="/accounts" element={<Outlet />} />
-          <Route path="/payroll" element={<Outlet />} />
-          <Route path="/reports" element={<Outlet />} />
-          <Route path="/advisor" element={<Outlet />} />
-          <Route path="/contacts" element={<Outlet />} />
-        </Route>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/accounts" element={<Dashboard />} />
+        <Route path="/payroll" element={<Dashboard />} />
+        <Route path="/reports" element={<Dashboard />} />
+        <Route path="/advisor" element={<Dashboard />} />
+        <Route path="/contacts" element={<Dashboard />} />
       </Routes>
     </ThemeProvider>
   );
