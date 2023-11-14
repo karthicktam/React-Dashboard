@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
+import { useThemeContext } from "../ThemeContext";
 
 const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   "&:hover": {
@@ -26,8 +27,6 @@ function RenderList({ navItems, onCloseDrawer = () => {} }) {
   const navigate = useNavigate();
 
   const location = useLocation();
-
-  console.log({ location });
 
   const [active, setActive] = useState(location.pathname || "/");
 
@@ -92,15 +91,19 @@ export function RenderDrawer({ navItems, open, onCloseDrawer }) {
 
 export function Sidebar({ navItems, onCloseDrawer }) {
   const matches = useMediaQuery("(max-width:760px)");
+  const { isDarkMode } = useThemeContext();
   return (
     <Box
       sx={{
         flexShrink: 0,
         width: matches ? "40vw !important" : "100%",
+        height: "100%",
         "& .MuiDrawer-paper": {
           maxWidth: matches ? "80vw !important" : 250,
           boxSizing: "border-box",
         },
+        bgcolor: isDarkMode && "#213547",
+        color: isDarkMode && "white",
       }}
       variant="permanent"
       anchor="left"

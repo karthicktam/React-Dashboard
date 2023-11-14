@@ -86,7 +86,6 @@ const Chart = ({ data }) => {
       .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
       .attr("width", barWidth)
       .attr("rx", (d) => {
-        console.log("value", d);
         return 4;
       })
       .attr("clip-path", "inset(0% 5% 0% 5% round 0px)");
@@ -130,7 +129,7 @@ function StackedBar() {
                   width={18}
                   height={18}
                 ></Box>
-                <Box class="dark">{index === 0 ? "out" : "in"}</Box>
+                <Box className="dark">{index === 0 ? "out" : "in"}</Box>
               </Box>
             );
           })}

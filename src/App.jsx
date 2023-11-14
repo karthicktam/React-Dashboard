@@ -1,8 +1,9 @@
 import "./App.css";
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
+import { useState } from "react";
 
 const theme = createTheme({
   palette: {

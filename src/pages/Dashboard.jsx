@@ -35,6 +35,8 @@ import LineChart from "../components/LineChart";
 import BarChartSection from "../components/BarChartSection";
 import StackedBar from "../components/StackedBar";
 import { ModalSearch, RenderSearch } from "../components/ModalSearch";
+import Toggle from "../components/Toggle";
+import { useThemeContext } from "../ThemeContext";
 
 const navItems = [
   { name: "Dashboard", route: "/", icon: <DI /> },
@@ -89,6 +91,8 @@ const monthOptions = [
 const accountOptions = ["Manage", "Auto"];
 
 export default function Dashboard() {
+  const { isDarkMode } = useThemeContext();
+
   const matchesLarge = useMediaQuery("(max-width:1024px)");
 
   const matches = useMediaQuery("(max-width:760px)");
@@ -118,12 +122,23 @@ export default function Dashboard() {
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>
       <AppBar position="sticky">
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box aria-label="open drawer" sx={{ mr: 2 }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            bgcolor: isDarkMode && "#213547",
+          }}
+        >
+          <Box
+            aria-label="open drawer"
+            sx={{ mr: 2, display: "flex", alignItems: "center" }}
+          >
             <img
               className="brand-logo"
-              src="../../assets/assiduus-logo.png"
+              src="../../assets/logo.jpg"
               alt="brand-logo"
+              width="500"
+              height="200"
             />
           </Box>
           <Stack flexDirection={"row"} alignItems={"center"} sx={{ gap: 3 }}>
@@ -131,7 +146,10 @@ export default function Dashboard() {
 
             {mobileMatch && (
               <>
-                <SearchIcon onClick={() => setSearchOpen(true)} />
+                <SearchIcon
+                  onClick={() => setSearchOpen(true)}
+                  sx={{ color: isDarkMode && "white" }}
+                />
                 <ModalSearch
                   open={searchOpen}
                   onClose={() => setSearchOpen(false)}
@@ -149,13 +167,19 @@ export default function Dashboard() {
                 },
               }}
             >
-              <Notifications color="action" />
+              <Notifications
+                color="action"
+                sx={{ color: isDarkMode && "white" }}
+              />
             </Badge>
+            <Toggle />
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <StyledIcon onClick={handleOpenUserMenu}>
                   <Avatar alt="Remy Sharp" src="../../assets/avataaars.svg" />
-                  <ArrowDropDownOutlinedIcon />
+                  <ArrowDropDownOutlinedIcon
+                    sx={{ color: isDarkMode && "white" }}
+                  />
                 </StyledIcon>
               </Tooltip>
               <Menu
@@ -183,7 +207,10 @@ export default function Dashboard() {
             </Box>
             {matches && (
               <Box display="flex" onClick={() => setIsOpenSideBar(true)}>
-                <MenuOutlined color="action" />
+                <MenuOutlined
+                  color="action"
+                  sx={{ color: isDarkMode && "white" }}
+                />
               </Box>
             )}
           </Stack>
